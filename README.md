@@ -3,17 +3,16 @@ This project is entitled Online Exam System. This is a web-based application dev
 About the Online Exam System
 
 # I developed this project using the following:
-Python
-Django
-SQLite3
-HTML
-CSS
-JavaScript
-jQuery
-Ajax
-Pillow Library
-asgiref Library
-Django-widget-tweaks
-pytz Library
-Fontawesome
-Bootstrap
+1.Python Django
+2. SQLite3
+3. HTML
+4. CSS
+5. JavaScript
+6 jQuery
+7 Ajax
+8. Pillow Library
+9. asgiref Library
+10. Django-widget-tweaks
+11. pytz Library
+12. Fontawesome
+13. Bootstrap
