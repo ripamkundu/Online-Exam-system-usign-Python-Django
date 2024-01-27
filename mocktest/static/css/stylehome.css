@@ -1,0 +1,93 @@
+/* css for home page */
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.part1{
+    display: flex;
+    flex-direction: row;
+}
+.part2{
+    background-color: rgb(236, 238, 236);
+    height: 330px;
+    font-family: 'Barlow Condensed', sans-serif;
+}
+.part3{
+    background-color: rgb(1, 22, 22);
+    height: 40px;
+    color: aliceblue;
+    text-align: center;
+}
+/* #leftp1{
+    height: 250px;
+    
+} */
+#rightp1{
+    background-color: rgb(129, 129, 138);
+    height: 250px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+#exambar-l{
+    width: 700px;
+    padding: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: antiquewhite;
+}
+#exambar-r{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(3, 13, 44);
+    width: 100px;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 7px;
+}
+#btn1{
+    padding: 10px;
+    padding-bottom: 40px;
+    border-radius: 7px;
+    
+}
+#btn2{
+    padding: 10px;
+    padding-top: 40px;
+    border-radius: 7px;
+}
+.heading{
+    font-size: 23px;
+    text-align: center;
+}
+.heading-span{
+    color: rgb(230, 122, 15);
+}
+.midsec{
+    display: flex;
+    flex-direction: row;
+    
+}
+.part2l{
+    width: 900px;
+    padding: 20px;
+}
+.part2r{
+    float: right;
+    padding: 5px;
+}
+.btn{
+    background-color: aqua;
+    padding: 5px;
+    border-radius: 8px;
+    font-family: 'Road Rage', cursive;
+    font-weight: bold;
+    color: rgb(6, 6, 56);
+}
+.btn:hover{
+    color: aqua;
+    background-color:rgb(6, 6, 56) ;
+}

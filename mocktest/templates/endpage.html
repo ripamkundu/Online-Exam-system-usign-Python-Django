@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&family=Josefin+Sans:ital,wght@1,500&family=Road+Rage&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .thanks {
+            position: absolute;
+            top: 250px;
+            left: 57%;
+            font-size: 50px;
+            
+        }
+
+        .submit {
+            position: absolute;
+            top: 350px;
+            left: 45%;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Josefin Sans', sans-serif;
+            font-family: 'Kanit', sans-serif;
+            color: rgb(4, 131, 4);
+            text-shadow: 2px 2px rgb(72, 255, 0);
+            font-size: 20px;
+            
+        }
+        .marks{
+            font-size: 23px;
+        }
+        .btn {
+            position: absolute;
+            top: 400px;
+            left: 65%;
+            margin: 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover{
+            box-shadow: 2px 2px 2px 2px rgba(245, 197, 109, 0.616);
+        }
+        .footer{
+            margin: 0;
+            padding: 0;
+            height: 30px;
+            color: white;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <title>endexam</title>
+</head>
+
+<body>
+    
+    <img src="{% static 'media/endexam.jpg' %}" alt="" width="100%" height="590px">
+    <div class="great">
+        <h2 class="thanks">Thank You !</h2>
+        <div class="submit">
+            <h2>Your Answer Has Been Submitted Successfully.</h2>
+            <h1 class="marks">Your Marks is - {{marks}}</h1>
+        </div>
+        <a href="/mocktest/"><button class="btn"><img src="{% static 'media/home.png' %}" alt="">&nbsp; <p><b>Home</b></p>
+            </button></a>
+
+
+    </div>
+    <div class="footer">
+        <p>Online Exam System &copy; All right Recived</p> 
+    </div>
+</body>
+
+</html>

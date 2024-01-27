@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='q'>
+        <p>1</p>
+        <p>Question</p>
+            <input type="radio" name="userans" id="opt1" value="o1">a<br>
+            <input type="radio" name="userans" id="opt2" value="o2">b<br>
+            <input type="radio" name="userans" id="opt3" value="o3">c<br>
+            <input type="radio" name="userans" id="opt4" value="o4">d<br>
+            <br>
+    </div>
+    <p id="res">Result</p>
+    <script>
+        let radiobtns = document.querySelectorAll("input[name='userans']");
+        let result = document.getElementById('res');
+
+        let findSelected =() =>{
+            let selected = document.querySelector("input[name='fruit']:checked").value;
+            result.textContent =`selected ${selected}`;
+        }
+        radiobtns.forEach(radiobtns=>{
+            radiobtns.addEventListener("change",findSelected);
+        });
+    </script>
+</body>
+</html>

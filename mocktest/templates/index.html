@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+    <title>startexam</title>
+    <link rel="stylesheet" href="{% static 'css/stylehome.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="part1">
+            <div id="leftp1">
+                <img src="{% static 'media/pic1.jpg' %}" alt="exam_leady" height="250px">
+            </div>
+            <div id="rightp1">
+                <div id="exambar-l">
+                    <img src="{% static 'media/logo.png' %}" alt="exam_leady" height="100px">
+                    <h1>Online Exam System</h1>
+                </div>
+                <div id="exambar-r">
+                    <a href="/admin/" id="btn1"><button class="btn">ADMIN LOGIN</button></a>
+                    <a href="login/" id="btn2"><button class="btn">USER LOGIN</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="part2">
+            <h3 class="heading">Welcome to <span class="heading-span">Online Exam System</span></h5>
+                <div class="midsec">
+                    <div class="part2l">
+                        <div class="part2l-a">
+                            <p>If you are an Administrator. click on the ADMIN LOGIN</p>
+                        </div>
+                        <div class="part2l-b">
+                            <p>If you are a User. click on the USER LOGIN</p>
+                        </div>
+                    </div>
+                    <div class="part2r">
+                        <img src="{% static 'media/pic2.jpg' %}" alt="exam_leady" height="250px">
+                    </div>
+                </div>
+        </div>
+        <div class="part3">
+            <p>Online Exam System &copy; All Rights Recived</p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

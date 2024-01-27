@@ -1,0 +1,36 @@
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from .models import Question
+end_q_no = 10
+marks_count = 0
+def index(request):
+    return render(request,"index.html")
+
+    
+def login(request):
+    return render(request,"login.html")
+def startexam(request):
+    return render(request,"stexam.html")
+def basic(request,q_id):
+    question = Question.objects.all()
+    item = Question.objects.get(q_id = q_id)
+    params = {'questions':question,'item':item,'end_q_no':range(end_q_no)}
+    return render(request,"basic.html",params)
+def saveans(request,q_id):
+    user_ans = request.GET.get("userans")
+    item_for_ans = Question.objects.get(q_id = q_id)
+    if(item_for_ans.ans == user_ans):
+        global marks_count
+        marks_count = marks_count + 1
+    qid = int(q_id)+1
+    end_q_id = end_q_no + 1
+    if (qid == end_q_id):
+        marks_count = 0
+        return HttpResponseRedirect('/mocktest/login/startexam/'+str(qid)+'/endpage/')
+    return HttpResponseRedirect('/mocktest/login/startexam/'+str(qid)+'/')
+def endpage(request,q_id):
+    global marks_count
+    params = {'marks' : marks_count}
+    return render(request,"endpage.html",params)
+
+

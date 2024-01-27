@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sec {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            border: blue solid 2px;
+            padding: 5px;
+        }
+
+        .sec1 {
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            visibility: hidden;
+        }
+
+        .sec1 div {
+            height: 550px;
+            width: 750px;
+            background-color: blanchedalmond;
+            position: relative;
+            left: 0;
+            margin-left: 20px;
+        }
+
+        .sec2 {
+            width: 300px;
+            /* height: 400px; */
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            background: blue;
+        }
+
+        #statusber {
+            background: blue;
+            height: 550px;
+        }
+
+        .sec2 button {
+            height: 50px;
+            width: 50px;
+            margin: 30px 20px 0 20px;
+            border-radius: 50px;
+        }
+
+        .sec3 {
+            height: 550px;
+            min-width: 200px;
+            background: red;
+            position: relative;
+            left: -6885px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="st">Start Exam</button>
+    <div class="sec">
+        <span id="statusber">
+            <div class="sec2">
+                {% for i in q %}
+                <button id={{i.q_id}}>Button {{i.q_id}}</button>
+                {% endfor %}
+            </div>
+        </span>
+        <div class="sec1">
+            {% for i in q %}
+            <div id='q{{i.q_id}}'>
+                <form action="/mocktest/login/saveans/" method="post">{% csrf_token %}
+                    <p name="qId">{{i.q_id}}</p>
+                    <p>{{i.question}}</p>
+                    <!-- <div id="option_container"> -->
+                    <input type="radio" name="userans" id="opt1" value="{{i.option1}}">{{i.option1}}<br>
+                    <input type="radio" name="userans" id="opt2" value="{{i.option2}}">{{i.option2}}<br>
+                    <input type="radio" name="userans" id="opt3" value="{{i.option3}}">{{i.option3}}<br>
+                    <input type="radio" name="userans" id="opt4" value="{{i.option4}}">{{i.option4}}<br>
+                    <!-- <div class="select_answer"></div> -->
+                    <!-- </div> -->
+                    <br>
+                    <button class="btn" type="submit" id="goFS">SAVE AND NEXT</button>
+                    <!-- <div >
+                        <div class="sec2-1"></div>
+                        <div class="sec2-2"><button class="btn" type="submit" id="goFS">SAVE AND
+                                NEXT</button></div>
+                    </div> -->
+                </form>
+                <!-- {{i.q_id}} -->
+                <!-- <div class="sec1-3"></div>
+                <div class="sec1-3"></div> -->
+            </div>
+            {% endfor %}
+        </div>
+        <div class="sec3">
+            hello
+        </div>
+        <div id="q"></div>
+        <script>
+            for (let index = 2; index < 11; index++) {
+                h = -((index - 2) * 300) + 'px'
+                w = -(((index - 1) * 750)+((index - 1) * 20)) + 'px'
+                console.log(h)
+                document.getElementById('q' + index).style.position = 'relative'
+                // document.getElementById('q'+index).style.top = h
+                document.getElementById('q' + index).style.left = w
+            }
+            document.getElementById('st').addEventListener('click', function () {
+                for (let i = 2; i < 11; i++) {
+                    document.getElementById('q' + i).style.visibility = 'hidden'
+                    document.getElementById('q1').style.visibility = 'visible'
+                    document.getElementById('st').style.visibility = 'hidden'
+                }
+            })
+            const onClick = function () {
+                i_d = this.id
+                console.log(i_d);
+                if (i_d != 1) {
+                    for (let i = 1; i < 11; i++) {
+                        h = -((i) * 300) + 'px'
+                        if (i != i_d) {
+                            document.getElementById('q' + i).style.visibility = 'hidden'
+                            document.getElementById('q' + i_d).style.visibility = 'visible'
+                            // document.getElementById('q'+i_d).style.position = 'relative'
+                            // document.getElementById('q'+i_d).style.top = h
+                        }
+                    }
+                }
+                else {
+                    for (let i = 2; i < 11; i++) {
+                        document.getElementById('q' + i).style.visibility = 'hidden'
+                        document.getElementById('q1').style.visibility = 'visible'
+                    }
+
+                }
+            }
+            for (let index = 1; index < 11; index++) {
+                document.getElementById(index).onclick = onClick;
+
+            }
+
+        </script>
+        <!-- <div class="sec1">
+            <div class="sec1-1">2</div>
+            <div class="sec1-2"><img src="" alt=""></div>
+            <div class="sec1-3">{{ques}}</div>
+        </div> -->
+    </div>
+    <!-- <a href="/mocktest/endexam/"><button id="sub">Submit</button></a> -->
+    <!-- <a href="1/"><button id="goFS">START EXAM</button></a> -->
+</body>
+
+</html>

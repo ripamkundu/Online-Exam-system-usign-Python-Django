@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <style>
+        .head {
+            background-image: linear-gradient(rgb(245, 116, 41), rgb(238, 178, 48), rgb(246, 246, 43));
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .exambody {
+            display: flex;
+            flex-direction: column;
+            border: 1px black solid;
+            width: 65%;
+            height: 350px;
+            margin: 20px;
+            padding: 30px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .option {
+            padding: 5px;
+        }
+
+        .qnobody {
+            margin: 20px 10px 0px 10px;
+            padding-left: 20px;
+            height: 550px;
+            width: 400px;
+            border: 1px black solid;
+        }
+
+        .question_container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            border: 2px solid green;
+            height: 35px;
+            width: 35px;
+            margin: 5px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        .btn {
+            background-color: rgb(3, 87, 3);
+            color: white;
+            width: 150px;
+            height: 30px;
+            margin-top: 15px;
+        }
+
+        #facevid {
+            height: 150px;
+            width: 200px;
+            object-fit: cover;
+            padding-left: 20%;
+        }
+        #vidmessage{
+            background-color: blue;
+            color: white;
+            width: 200px;
+            margin-left: 20%;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <!-- <button id="fullbtn">Fullscreen</button> -->
+    <div id="totalbody">
+        <div class="head">
+            <h2>Online exam Portel</h2>
+        </div>
+        <div class="container">
+            <div class="exambody">
+                <div class="titlebody">
+                    <h4>{{item.q_id}}.&nbsp;&nbsp;{{item.question}}</h4>
+                    <!-- <h4>{{item.ans}}</h4> -->
+
+                </div>
+                <div class="optionbody">
+                    <form action="/mocktest/login/saveans/{{item.q_id}}/" method="post">{% csrf_token %}
+                        <div class="sec1" id="option_container">
+                            <div class="option"><input type="radio" name="userans" id="opt1"
+                                    value="{{item.option1}}">{{item.option1}}</div>
+                            <div class="option"><input type="radio" name="userans" id="opt2"
+                                    value="{{item.option2}}">{{item.option2}}</div>
+                            <div class="option"><input type="radio" name="userans" id="opt3"
+                                    value="{{item.option3}}">{{item.option3}}</div>
+                            <div class="option"><input type="radio" name="userans" id="opt4"
+                                    value="{{item.option4}}">{{item.option4}}</div>
+                            <div class="select_answer"></div>
+                        </div>
+                        <div class="sec2">
+                            <div class="sec2-1"></div>
+                            <div class="sec2-2"><button class="btn" type="submit" id="goFS">SAVE AND
+                                    NEXT</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="qnobody">
+                <p><b>Time left - </b></p>
+                <p id="countdown">loading ...</p>
+                <div id="faceReco">
+                    <video id="facevid" autoplay="true"></video>
+                    <p id="vidmessage">You are in our invigilation!</p>
+                </div>
+                <H4>Question no</H4>
+                <div class="question_container">
+
+                    {% for i in end_q_no %}
+                    <!-- <a href="/mocktest/login/question/{{i}}/">
+                    <div class="card" id="card{{i}}">{{ i }}</div>
+                </a> -->
+                    <div class="card" id="{{item.q_id}}">{{ forloop.counter }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% block body %} {% endblock %}
+    </div>
+    <!-- <script>
+        document.getElementById("fullbtn").addEventListener('click', function () {
+            document.getElementById('body').requestFullscreen();
+        })
+    </script> -->
+</body>
+<script>
+    // Timer
+    const total_time = 0.5;
+    let time = total_time * 60;
+    const countdown = document.getElementById("countdown");
+
+    setInterval(updatecountdown, 1000);
+
+    function updatecountdown() {
+        if (time < 0) {
+            document.location.href = "/mocktest/login/saveans/{{item.q_id}}/"
+        }
+        const min = Math.floor(time / 60);
+        let sec = time % 60;
+        sec = sec < 10 ? '0' + sec : sec;
+        countdown.innerHTML = `${min}:${sec}`;
+        time--;
+    }
+
+
+    // window.addEventListener('DOMContentLoaded', (event) => {
+    //     document.body.requestFullscreen();
+    // });
+    // var deadline = new Date("dec 17, 2021 18:03:25").getTime();
+    // var x = setInterval(function() {
+    // var now = new Date().getTime();
+    // var t = deadline - now;
+    // var days = Math.floor(t / (1000 * 60 * 60 * 24));
+    // var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+    // var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    // var seconds = Math.floor((t % (1000 * 60)) / 1000);
+    // document.getElementById("countdown").innerHTML = days + "d "
+    // + hours + "h " + minutes + "m " + seconds + "s ";
+    //     if (t < 0) {
+    //         clearInterval(x);
+    //         document.getElementById("demo").innerHTML = "EXPIRED";
+    //     }
+    // }, 1000);
+
+
+
+</script>
+
+<!-- Face Reckognagition System -->
+<script>
+let video = document.getElementById('facevid');
+if (navigator.mediaDevices.getUserMedia){
+    navigator.mediaDevices.getUserMedia({video:true,audio:true}).
+    then(function(stream) {
+        video.srcObject = stream;
+    })
+}
+else{
+    console.log("Not found")
+}
+</script>
+
+</html>
